@@ -1,4 +1,6 @@
 #include <bits/stdc++.h>
+
+#include "represent-graph.h"
 using namespace std;
 
 struct Node {
@@ -32,19 +34,11 @@ void UCS(string start, string goal,
       }
   }
 
-  string p = parent[goal];
-  vector<string> path;
-  path.push_back(goal);
-
-  while (p != "") {
-    path.push_back(p);
-    p = parent[p];
-  }
-
-  reverse(path.begin(), path.end());
-
-  cout << "Path: ";
-  for (auto node : path) cout << node << " ";
-
+  print_path(goal, parent);
   cout << endl << "Cost: " << dist[goal].value << endl;
+}
+
+int main() {
+  auto graph = build_graph_with_weights();
+  UCS("arad", "bucharest", graph);
 }
